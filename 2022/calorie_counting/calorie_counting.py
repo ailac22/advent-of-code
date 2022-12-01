@@ -12,5 +12,6 @@ def calories_list(input_list):
 
 with open("input.txt","r") as f:
     L = parse_input(f) 
-    print(f"Top: {calories_list(L)[0]}")
-    print(f"Top 3: {sum(calories_list(L)[0:3])}")
+    cal = calories_list(L)
+    print(f"Top: {cal[0]}")
+    print(f"Top 3: {sum(cal[0:3])}")
