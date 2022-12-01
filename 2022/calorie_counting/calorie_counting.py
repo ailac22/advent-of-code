@@ -6,7 +6,7 @@ def parse_input(f):
 
 def calories_list(input_list):
     L = [list(g) for _, g in itertools.groupby(input_list, key=lambda x: x == 0)]
-    res = [sum(x) for x in L if x]
+    res = [sum(x) for x in L]
     res.sort(reverse=True)
     return res
 
