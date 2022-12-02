@@ -1,6 +1,6 @@
-rpsValue = {'A':1, 'B':2, 'C': 3}
-rpsWC = {'A': 'C', 'B': 'A', 'C':'B' }
-rpsLC = {val: key for (key, val) in rpsWC.items()}
+rpsValue = {'A':1, 'B':2, 'C': 3} # Rock Paper Scissors values
+rpsWC = {'A': 'C', 'B': 'A', 'C':'B' } # Win condition
+rpsLC = {val: key for (key, val) in rpsWC.items()} # Lose condition
 
 def roundOutcome(game):
     wdlValue = [6,3,0]
