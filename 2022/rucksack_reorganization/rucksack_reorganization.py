@@ -1,3 +1,4 @@
+import functools
 
 def getItemPriorityValue(item):
     if item.isupper():
@@ -5,36 +6,34 @@ def getItemPriorityValue(item):
     else:
         return ord(item) - 96
 
+def getRepeatedItem(s):
+    s2 = [ set(x) for x in s ]
+    item_set = functools.reduce(lambda out, el: out.intersection(el), s2)
+    return list(item_set)[0]
+
+def divideInChunks(list,chunk_size):
+    return [list[i:i+chunk_size] for i in range(0, len(list), chunk_size)] 
+
 def getPriority(rucksack):
-    half_length = len(rucksack) // 2
-
-    hl1 = set(rucksack[:half_length])
-    hl2 = set(rucksack[half_length:])
-    duplicate_item_set = hl1.intersection(hl2)
-
-    duplicate_item = list(duplicate_item_set)[0]
-
+    h = divideInChunks(rucksack,len(rucksack) // 2)
+    duplicate_item = getRepeatedItem(h)
     return getItemPriorityValue(duplicate_item)
 
-def findBadgeInGroup(list):
-    pass
+def findPriorityInGroup(group):
+    repeated_item = getRepeatedItem(group)
+    return getItemPriorityValue(repeated_item)
 
 def findBadgePriorities(list):
-    chunk_size = 3
-    chunked_list = [L[i:i+chunk_size] for i in range(0, len(L), chunk_size)]
-
-    print(chunked_list)
+    groups = divideInChunks(list, 3)
+    return sum(map(findPriorityInGroup,groups))
 
 
 with open('input.txt','r') as f:
     L = f.read().split()
-# set(L[:len(L/2)])
     res = sum(map(getPriority,L))
 
-    findBadgePriorities(L)
-    # res2 = sum(map(findBadgePriorities,L))
+    res2 = findBadgePriorities(L)
+    print(res2)
 
-    print(res)
 
-        # L2 = [  1  ,  set(L[half_length:])] ##  ] for x in L]
 
