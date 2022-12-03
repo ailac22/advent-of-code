@@ -31,9 +31,9 @@ def findBadgePriorities(list):
 with open('input.txt','r') as f:
     L = f.read().split()
     res = sum(map(getPriority,L))
-
+    print(f"First result: {res}")
     res2 = findBadgePriorities(L)
-    print(res2)
+    print(f"Second result {res2}")
 
 
 
