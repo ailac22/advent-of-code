@@ -8,7 +8,7 @@ def overlap_at_all(ranges):
 
 def check_overlaps(pairs,check_method):
     sum = 0
-    for pair in La:
+    for pair in pairs: 
         ranges = []
         for elf in pair:
             ranges.append(set(range(int(elf[0]),int(elf[1])+1)))
