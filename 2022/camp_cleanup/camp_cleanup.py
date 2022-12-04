@@ -4,7 +4,7 @@ def fully_contained(ranges):
     return ranges[0].issuperset(ranges[1]) or ranges[1].issuperset(ranges[0])
 
 def overlap_at_all(ranges):
-    return len(ranges[0].intersection(ranges[1])) > 0
+    return len(ranges[0] & (ranges[1])) > 0
 
 def check_overlaps(pairs,check_method):
     sum = 0
