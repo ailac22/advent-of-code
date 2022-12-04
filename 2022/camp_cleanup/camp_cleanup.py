@@ -1,5 +1,3 @@
-
-
 def fully_contained(ranges):
     return ranges[0].issuperset(ranges[1]) or ranges[1].issuperset(ranges[0])
 
