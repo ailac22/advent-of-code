@@ -1,22 +1,25 @@
 
-with open('input.txt','r') as f:
-    #La = [x.split(',') for x in f.read().strip().split('\n')]
-    La = [[x.split('-'),y.split('-')] for [x,y] in [y.split(',') for y in f.read().strip().split('\n')]] 
 
-    print(La)
+def fully_contained(ranges):
+    return ranges[0].issuperset(ranges[1]) or ranges[1].issuperset(ranges[0])
+
+def overlap_at_all(ranges):
+    return len(ranges[0].intersection(ranges[1])) > 0
+
+def check_overlaps(pairs,check_method):
     sum = 0
     for pair in La:
-        print(f"pair {pair}")
         ranges = []
         for elf in pair:
             ranges.append(set(range(int(elf[0]),int(elf[1])+1)))
-        print(f"ranges{ranges}")
-        if ranges[0].issuperset(ranges[1]) or ranges[1].issuperset(ranges[0]):
+        if check_method(ranges):
             sum += 1
 
-    print(sum)
+    return sum
 
-    # L = [y.split('-') for y in La]
+with open('input.txt','r') as f:
+    La = [[x.split('-'),y.split('-')] for [x,y] in [y.split(',') for y in f.read().strip().split('\n')]] 
 
+    print(f"First result {check_overlaps(La,fully_contained)}")
 
-    # print(L)
+    print(f"Second result {check_overlaps(La,overlap_at_all)}")
