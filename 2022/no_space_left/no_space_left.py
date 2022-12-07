@@ -2,7 +2,6 @@
 fs = {'name':'/','size':0,'parent':None,'children': []}
 cwd = fs  
 
-
 def printDir(dir, tabs = '\t'):
     print(f"{tabs}name: {dir['name']}, size: {dir['size']}")
     if dir['children'] != None:
@@ -56,19 +55,16 @@ def findDirSizes(dir):
             allDirSizes.extend(findDirSizes(file))
 
     allDirSizes.append(findDirSize(dir))
-
     return allDirSizes
 
 
 with open('input.txt', 'r') as f:
     cmds = f.read().strip().split('\n')
     parse(cmds)
-    # printDir(fs)
     lista_orig = findDirSizes(fs)
     lista = list(filter(lambda x: x<= 100000,lista_orig))
     print(f"First result {sum(lista)}")
 
     lista = list(filter(lambda x: x> 6975962,lista_orig))
     lista.sort(reverse=True)
-    
     print(f"Second result {min(lista)}")
