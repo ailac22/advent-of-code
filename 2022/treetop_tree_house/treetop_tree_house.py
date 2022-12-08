@@ -39,10 +39,8 @@ with open('input.txt','r') as f:
     scenicScores = []
     for j in range(len(forest)):
         for i in range(len(forest[0])):
-            # print(f"checking {forest[j][i]}, {i},{j}")
             scenicScores.append(find_scenic_score(i,j,forest))
             if isVisible(i,j,forest):
-                
                 acc += 1
 
     print(f"First result {acc}")
