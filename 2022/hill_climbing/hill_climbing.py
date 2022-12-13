@@ -135,6 +135,8 @@ with open('input.txt') as f:
                 a = hill[x[1]] 
                 hill[x[1]] = a[:x[0]] + '.' + a[x[0]+1:] 
 
+    for x in hill:
+        print(x)
     
     print(f"Steps: {(len(reconst_path) if reconst_path != None else 0) - 1}")
 
