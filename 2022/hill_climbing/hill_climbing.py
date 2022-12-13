@@ -19,14 +19,6 @@ def canGo(cp,np,hill):
     if not (np[0] <= len(hill[0]) - 1 and np[0] >= 0 and np[1] <= len(hill) - 1 and np[1] >= 0):
         return False
 
-    print(f"cp {cp}")
-    print(f"np {np}")
-    print(hill[cp[1]][cp[0]])
-    print(hill[np[1]][np[0]])
-
-    print(f"len hill {len(hill[0]) - 1}")
-    print(f"len hill {len(hill) - 1}")
-
     cl = hill[cp[1]][cp[0]] 
     cl = cl if cl != 'S' else 'a'
     nl = hill[np[1]][np[0]]
@@ -91,8 +83,8 @@ def a_star_algorithm(start, stop):
 
             reconst_path.reverse()
 
-            print('Path found: {}'.format(reconst_path))
-            print(len(reconst_path)-1)
+            # print('Path found: {}'.format(reconst_path))
+            # print(len(reconst_path)-1)
             return reconst_path
 
         # for all the neighbors of the current node do
@@ -175,9 +167,18 @@ with open('input.txt') as f:
     reconst_path = a_star_algorithm(S,E)
     
     # part 2
-    # for j in range(len(hill)):
-    #     for i in range(len(hill[0])):
-    #         if hill[]
+    possible_starts = []
+    # print(range(len(hill))[-1])
+    # print(range(len(hill[0]))[-1])
+    for j in range(len(hill)):
+        for i in range(len(hill[0])):
+            if hill[j][i] == 'a':
+                print(f"--- A* ---- in {j,i}")
+                result = a_star_algorithm((i,j),E)
+                if result != None:
+                    possible_starts.append(len(result)-1)
+
+    print(f"Second result: {min(possible_starts)}")
     
     if reconst_path != None:
             for x in reconst_path:
