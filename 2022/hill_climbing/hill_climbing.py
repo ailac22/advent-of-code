@@ -1,6 +1,4 @@
 from string import ascii_letters 
-from sys import maxsize
-import time
 
 
 def vector_sum(a,b):
@@ -114,77 +112,30 @@ def a_star_algorithm(start, stop):
         open_lst.remove(n)
         closed_lst.add(n)
 
-    print('Path does not exist!')
     return None
-
-# def advance(cp,steps,best,hill,visited):
-#     
-#     time.sleep(0.5)
-#     print(visited)
-#     if cp == E:
-#         print("OJO")
-#         exit(1)
-#     print("in ",cp, " -- ", hill[cp[1]][cp[0]])
-#     if cp not in visited:
-#         visited.add(cp)
-#     else:
-#         return best
-
-#     if steps > best:
-#         return best
-
-#     if hill[cp[1]][cp[0]] == 'E':
-#         # print(visited)
-#         return min(best,steps)
-
-#     possibleNext = list(filter(canGo,map(lambda x: vector_sum(cp,x),[(1,0), (-1,0), (0,1), (0,-1)])))
-
-#     possibleNext.sort(key=eagerHeur)
-#     
-#     print('-- possible next -- ')
-#     for x in possibleNext:
-#         print(hill[x[1]][x[0]], "(",x,")",end=",")
-
-#     print("\n")
-#     for np in possibleNext:
-#         # print("manhattan: ", manhattanHeuristic(np))
-#         if canGo(cp,np,hill):
-#             best = min(best,advance(np, steps + 1, best, hill,visited))
-
-
-#     visited.discard(cp)
-#     return best
-
 
 with open('input.txt') as f:
     hill = [x.strip() for x in f.readlines()]
 
-    
-    for i,x in enumerate(hill):
-        print(i, x)
-
-    visited = set() 
     reconst_path = a_star_algorithm(S,E)
     
     # part 2
     possible_starts = []
-    # print(range(len(hill))[-1])
-    # print(range(len(hill[0]))[-1])
     for j in range(len(hill)):
         for i in range(len(hill[0])):
             if hill[j][i] == 'a':
-                print(f"--- A* ---- in {j,i}")
                 result = a_star_algorithm((i,j),E)
                 if result != None:
                     possible_starts.append(len(result)-1)
-
-    print(f"Second result: {min(possible_starts)}")
     
+    print("-- First result --")
+    print("Map:")
     if reconst_path != None:
             for x in reconst_path:
                 a = hill[x[1]] 
                 hill[x[1]] = a[:x[0]] + '.' + a[x[0]+1:] 
 
-    for x in hill:
-        print(x)
-    # print(advance(S,0,maxsize,hill,visited))
+    
+    print(f"Steps: {(len(reconst_path) if reconst_path != None else 0) - 1}")
+
+    print(f"Second result: {min(possible_starts)}")
