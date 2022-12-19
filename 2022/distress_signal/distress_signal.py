@@ -1,6 +1,3 @@
-import numpy as np
-import time
-
 def my_normalize(la,lb):
     if type(la) == int and type(lb) == list:
         la,lb = [la],lb
